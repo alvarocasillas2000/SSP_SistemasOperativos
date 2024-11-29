@@ -1,6 +1,7 @@
 #include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h> // Para usar sleep
 
 void* thread_function(void* arg) {
     printf("Hilo iniciado, se finalizará después.\n");
@@ -17,6 +18,9 @@ int main() {
 
     // Desvincular el hilo (no se usa pthread_join)
     pthread_detach(thread);
+
+    // Forzar espera en el programa principal para observar el hilo
+    sleep(1); // Espera 1 segundo antes de finalizar
 
     printf("Hilo desvinculado, programa principal continúa.\n");
     return 0;
